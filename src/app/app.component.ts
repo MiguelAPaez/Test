@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
+export class AppComponent implements OnInit {
   title = 'Test';
   fullname = '';
   function = '';
@@ -17,6 +17,14 @@ export class AppComponent{
   empleadoconst;
 
   constructor(private dataServices: DataServices){}
+
+  ngOnInit(): void {
+    this.dataServices.cargarEmpleados().subscribe(
+      (empleados: Employee[]) => {
+        this.empleados = empleados;
+      }
+    );
+  }
 
   // tslint:disable-next-line: typedef
   onAgregarEmpleado(){

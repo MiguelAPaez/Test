@@ -15,4 +15,20 @@ export class DataServices{
       error => console.log("Algo ocurre" + error)
     );
   }
+
+  //Cargar Empleados
+  cargarEmpleados(){
+    return this.httpClient.get('/api/employees');
+  }
+
+  //Eliminar Empleado
+  eliminarEmpleado(empleado: number){
+    this.httpClient.post('/api/delete', empleado).subscribe(
+      response => {
+        console.log("Resultado guardar Empleado: " + response);
+      },
+      error => console.log("Algo ocurre" + error)
+    );
+  }
+
 }
