@@ -19,22 +19,33 @@ export class AppComponent implements OnInit {
   constructor(private dataServices: DataServices){}
 
   ngOnInit(): void {
-    this.dataServices.cargarEmpleados().subscribe(
-      (empleados: Employee[]) => {
-        this.empleados = empleados;
-      }
-    );
+    this.onCargarEmpleados();
   }
 
   // tslint:disable-next-line: typedef
   onAgregarEmpleado(){
     this.empleadoCreado = true;
     this.agregarEmpleadoStatus = 'Empleado Agregado';
-    const empl = new Employee (this.fullname, this.function);
+    const empl = new Employee (this.empleados.length+1, this.fullname, this.function);
     this.empleadoconst = empl;
     console.log(empl);
     this.empleados.push(empl);
     this.dataServices.agregarEmpleado(empl);
+  }
+
+  //Eliminar Empleado
+  onEliminarEmpleado(id: number){
+    this.dataServices.eliminarEmpleado(id);
+    this.onCargarEmpleados();
+  }
+
+  //Cargar Empleados
+  onCargarEmpleados(){
+    this.dataServices.cargarEmpleados().subscribe(
+      (empleados: Employee[]) => {
+        this.empleados = empleados;
+      }
+    );
   }
 
 }

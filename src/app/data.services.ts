@@ -23,9 +23,9 @@ export class DataServices{
 
   //Eliminar Empleado
   eliminarEmpleado(empleado: number){
-    this.httpClient.post('/api/delete', empleado).subscribe(
+    this.httpClient.delete('/api/delete/' + empleado).subscribe(
       response => {
-        console.log("Resultado guardar Empleado: " + response);
+        console.log("Resultado eliminar Empleado: " + response);
       },
       error => console.log("Algo ocurre" + error)
     );
