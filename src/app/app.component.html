@@ -2,42 +2,39 @@
   <div class = "row">
     <div class = "col">
       <h1>
-        Sistema de Empleados
+        Sistema de Ubicaciones
       </h1>
 
       <input
         type="text"
         class="form-control"
-        [(ngModel)] = 'fullname'>
-      <p>Nombre Completo</p>
-      <select
-      name="function"
-      [(ngModel)] = 'function'
-      class="form-control">
-        <option value="Empleado">Empleado</option>
-        <option value="Jefe">Jefe</option>
-      </select>
-      <p>Funcion</p>
+        [(ngModel)] = 'name'>
+      <p>Nombre Ubicación</p>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)] = 'area_m2'>
+      <p>Área en m2</p>
       <button class = "btn btn-primary"
-      (click) = "onAgregarEmpleado()">Agregar Empleado</button>
+      (click) = "onAgregarLocation()">Agregar Ubicación</button>
     </div>
   </div>
   <hr/>
 </div>
 
-<table name="table_empleados" class="table">
+<table name="table_ubicaciones" class="table">
   <thead>
     <tr class="thead-dark">
       <th scope="col">#</th>
-      <th scope="col">Nombre Completo</th>
-      <th scope="col">Función</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Área m2</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
-  <tr *ngFor="let empl of empleados; let i = index">
+  <tr *ngFor="let locac of locations; let i = index">
     <th scope="col">{{i+1}}</th>
-    <th scope="col">{{empl.fullname}}</th>
-    <th scope="col">{{empl.functio}}</th>
-    <th scope="col" (click)="onEliminarEmpleado(empl.id_employee)"><img src="assets/img/del.svg " width="30" height="30"></th>
+    <th scope="col">{{locac.name}}</th>
+    <th scope="col">{{locac.area_m2}}</th>
+    <th scope="col" (click)="onEliminarLocation(locac.id_location)"><img src="assets/img/del.svg " width="30" height="30"></th>
   </tr>
 </table>

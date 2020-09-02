@@ -1,14 +1,14 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Employee } from './employee.model';
+import { Location } from './location.model';
 
 @Injectable()
 export class DataServices{
   constructor(private httpClient: HttpClient){}
 
-  //Agregar Empleado
-  agregarEmpleado(empleado: Employee){
-    this.httpClient.post('/api/add', empleado).subscribe(
+  //Agregar Location
+  agregarLocation(location: Location){
+    this.httpClient.post('/api/add', location).subscribe(
       response => {
         console.log("Resultado guardar Empleado: " + response);
       },
@@ -16,16 +16,16 @@ export class DataServices{
     );
   }
 
-  //Cargar Empleados
-  cargarEmpleados(){
-    return this.httpClient.get('/api/employees');
+  //Cargar Locations
+  cargarLocations(){
+    return this.httpClient.get('/api/locations');
   }
 
-  //Eliminar Empleado
-  eliminarEmpleado(empleado: number){
-    this.httpClient.delete('/api/delete/' + empleado).subscribe(
+  //Eliminar Location
+  eliminarLocation(location: number){
+    this.httpClient.delete('/api/delete/' + location).subscribe(
       response => {
-        console.log("Resultado eliminar Empleado: " + response);
+        console.log("Resultado eliminar Location: " + response);
       },
       error => console.log("Algo ocurre" + error)
     );

@@ -1,5 +1,5 @@
 import { DataServices } from './data.services';
-import { Employee } from './employee.model';
+import { Location } from './location.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,41 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Test';
-  fullname = '';
-  function = '';
-  empleadoCreado = false;
-  agregarEmpleadoStatus;
-  empleados: Employee[] = [];
-  empleadoconst;
+  name = '';
+  area_m2 = '';
+  locationCreada = false;
+  agregarLocationStatus;
+  locations: Location[] = [];
 
   constructor(private dataServices: DataServices){}
 
   ngOnInit(): void {
-    this.onCargarEmpleados();
+    this.onCargarLocations();
   }
 
   // tslint:disable-next-line: typedef
-  onAgregarEmpleado(){
-    this.empleadoCreado = true;
-    this.agregarEmpleadoStatus = 'Empleado Agregado';
-    const empl = new Employee (this.empleados.length+1, this.fullname, this.function);
-    this.empleadoconst = empl;
-    console.log(empl);
-    this.empleados.push(empl);
-    this.dataServices.agregarEmpleado(empl);
+  onAgregarLocation(){
+    this.locationCreada = true;
+    this.agregarLocationStatus = 'Empleado Agregado';
+    const locat = new Location (this.locations.length+1, this.name, this.area_m2);
+    console.log(locat);
+    this.dataServices.agregarLocation(locat);
+    this.onCargarLocations();
   }
 
-  //Eliminar Empleado
-  onEliminarEmpleado(id: number){
-    this.dataServices.eliminarEmpleado(id);
-    this.onCargarEmpleados();
+  //Eliminar Location
+  onEliminarLocation(id: number){
+    this.dataServices.eliminarLocation(id);
+    this.onCargarLocations();
   }
 
   //Cargar Empleados
-  onCargarEmpleados(){
-    this.dataServices.cargarEmpleados().subscribe(
-      (empleados: Employee[]) => {
-        this.empleados = empleados;
+  onCargarLocations(){
+    this.dataServices.cargarLocations().subscribe(
+      (location: Location[]) => {
+        this.locations = location;
       }
     );
   }
