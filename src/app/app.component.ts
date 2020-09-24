@@ -28,7 +28,10 @@ export class AppComponent implements OnInit {
     const locat = new Location (this.locations.length+1, this.name, this.area_m2);
     console.log(locat);
     this.dataServices.agregarLocation(locat);
-    this.onCargarLocations();
+    setTimeout(() => {
+      console.log('sleep');
+      this.onCargarLocations();
+    }, 1000);
   }
 
   //Eliminar Location

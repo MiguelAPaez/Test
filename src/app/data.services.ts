@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Location } from './location.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class DataServices{
@@ -8,7 +9,7 @@ export class DataServices{
 
   //Agregar Location
   agregarLocation(location: Location){
-    this.httpClient.post('/api/add', location).subscribe(
+    this.httpClient.post(environment.url + '/api/add', location).subscribe(
       response => {
         console.log("Resultado guardar Empleado: " + response);
       },
@@ -18,12 +19,12 @@ export class DataServices{
 
   //Cargar Locations
   cargarLocations(){
-    return this.httpClient.get('/api/locations');
+    return this.httpClient.get(environment.url + '/api/locations');
   }
 
   //Eliminar Location
   eliminarLocation(location: number){
-    this.httpClient.delete('/api/delete/' + location).subscribe(
+    this.httpClient.delete(environment.url + '/api/delete/' + location).subscribe(
       response => {
         console.log("Resultado eliminar Location: " + response);
       },
